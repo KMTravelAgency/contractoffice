@@ -1,8 +1,8 @@
 from pydantic import BaseModel
 
 class ContractModel(BaseModel):
-    contactor_name: str
-    contactor_country: str
+    contractor_name: str
+    contractor_country: str
     contractor_location: str
     contractor_accommodation_type: str
     contractor_accommodation_unit_size: int

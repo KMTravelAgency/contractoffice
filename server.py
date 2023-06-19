@@ -11,8 +11,8 @@ async def root():
 def submit_contract(contract_query: ContractModel):
     """ submit a contract and add to rabbitmq server"""
 
-    name = contract_query.contactor_name
-    country = contract_query.contactor_country
+    name = contract_query.contractor_name
+    country = contract_query.contractor_country
     location = contract_query.contractor_location
     accommodation_type = contract_query.contractor_accommodation_type
     accommodation_unit_size = contract_query.contractor_accommodation_unit_size
