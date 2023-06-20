@@ -16,12 +16,12 @@ class RabbitMQHelper:
     def __init__(self) -> None:
 
         url = os.environ["RABBITMQ_URL"]
-        params = pika.URLParameters(url)
+        ##params = pika.URLParameters(url)
 
-        self.__connection = pika.BlockingConnection(params)
+        self.__connection = pika.BlockingConnection(pika.ConnectionParameters(url)) 
 
     def __create_channel(self) -> pika.BlockingConnection:
-        channel =self.__connection.channel()
+        channel = self.__connection.channel()
         return channel
     
     async def __create_exchanges_queues(self) -> None:
@@ -32,7 +32,7 @@ class RabbitMQHelper:
             exchange=self.EXCHANGE, exchange_type=self.EXCHANGE_TYPE
         )
 
-        channel.exchange_declare(queue=self.QUEUE_NAME)
+        channel.queue_declare(queue=self.QUEUE_NAME)
                                  
         channel.queue_bind(
             self.QUEUE_NAME,
