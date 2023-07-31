@@ -1,17 +1,14 @@
 from fastapi import FastAPI
 from schemas import ContractModel
 from rabbitmq_helper import rabbitmq
+from uuid import UUID
 
 app = FastAPI()
 
-@app.get("/")
-async def root():
-    return {"message": "Hello world"}
-
 @app.post("/contractsubmit")
 async def submit_contract(contract_query: ContractModel):
-    """ submit a contract and add to rabbitmq server"""
-
+    """ submit a contract and add to rabbitmq server """
+    uuid = str(contract_query.uuid)
     name = contract_query.contractor_name
     country = contract_query.contractor_country
     location = contract_query.contractor_location
@@ -21,6 +18,7 @@ async def submit_contract(contract_query: ContractModel):
 
     await rabbitmq.publish_message(
         message_body= {
+            "uuid": uuid,
             "name": name,
             "country": country,
             "location": location,
