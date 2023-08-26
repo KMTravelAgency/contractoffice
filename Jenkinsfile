@@ -6,7 +6,7 @@ pipeline {
         stages {
             stage('Build') {
                 steps {
-                    echo 'This is the build stage'
+                    sh 'docker build -t contractoffice:latest'
                 }
             }
             stage('Test') {
