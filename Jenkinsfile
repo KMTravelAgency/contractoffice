@@ -1,13 +1,9 @@
 pipeline {
-    environment {
-      DOCKER = credentials('docker-hub')
-    }
     agent any
         stages {
             stage('Build') {
                 steps {
-                    sh 'docker build -f Dockerfile \
-                    -t contractoffice:latest .'
+                    echo 'This is the build stage'
                 }
             }
             stage('Test') {
