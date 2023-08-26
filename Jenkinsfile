@@ -6,7 +6,7 @@ pipeline {
         stages {
             stage('Build') {
                 steps {
-                    sh 'docker build -t contractoffice:latest'
+                    sh 'docker build -t kenn643r/contractoffice:latest .'
                 }
             }
             stage('Test') {
